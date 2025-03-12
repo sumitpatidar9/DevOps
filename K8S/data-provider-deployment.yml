@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-providers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-providers
+  template:
+    metadata:
+      labels:
+        app: data-providers
+    spec:
+      containers:
+        - name: data-provider-1
+          image: data-provider-1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 7000
+          env:
+            - name: NODE_ENV
+              value: "production"
+
+        - name: data-provider-2
+          image: data-provider-2
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          env:
+            - name: NODE_ENV
+              value: "production"
+
+        - name: data-provider-3
+          image: data-provider-3
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9000
+          env:
+            - name: NODE_ENV
+              value: "production"

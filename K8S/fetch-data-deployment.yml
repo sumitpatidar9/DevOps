@@ -1,0 +1,26 @@
+
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fetch-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fetch-data
+  template:
+    metadata:
+      labels:
+        app: fetch-data
+    spec:
+      containers:
+        - name: fetch-data
+          image: fetch-data
+          imagePullPolicy: Never 
+          ports:
+            - containerPort: 5000
+          env:
+            - name: NODE_ENV
+              value: "production"

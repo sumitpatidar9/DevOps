@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-providers
+spec:
+  selector:
+    app: data-providers
+  type: NodePort  # Enables external access
+  ports:
+    - name: provider-1
+      protocol: TCP
+      port: 7000
+      targetPort: 7000
+      nodePort: 30070  # NodePort must be between 30000-32767
+
+    - name: provider-2
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 30080  # Choose a different port for each service
+
+    - name: provider-3
+      protocol: TCP
+      port: 9000
+      targetPort: 9000
+      nodePort: 30090
